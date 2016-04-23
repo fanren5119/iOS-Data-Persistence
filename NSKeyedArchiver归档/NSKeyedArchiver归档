@@ -1,0 +1,40 @@
+1.NSKeyedArchiver简介
+    归档是ios中另一种形式的序列话，只有遵循了NSCoding
+协议的对象都可以通过它实现序列化；ios中绝大多数存储数据
+的Fouondation和Cocoa Touch类都遵循了NSCoding协议。
+
+2.遵循NSCoding协议
+    NSCoding协议声明了两个方法，这两个方法是必须实现的
+一个用来说明如何将对象编码到归档中，另一个说明如何进行
+解档来获取一个新对象。
+    ① 归档
+    - (void)encodeWithCoder:(NSCoder *)aCoder
+    {
+        [aCoder encodeObject:self.name forKey:@"name"];
+        [aCoder encodeInteger:self.age forKey:@"age"];
+        [aCoder encodeBool:self.sex forKey:@"sex"];
+    }
+    ② 解档
+    - (id)initWithCoder:(NSCoder *)aDecoder
+    {
+        self = [super init];
+        if (self) {
+            self.name = [aDecoder decodeObjectForKey:@"name"];
+            self.age = [aDecoder decodeIntegerForKey:@"age"];
+            self.sex = [aDecoder decodeBoolForKey:@"sex"];
+        }
+        return self;
+    }
+    
+3.使用
+    ① 对象归档
+        NSString *fileName = @"文件路径";
+        People *people = [[People alloc] init];
+        [NSKeyedArchiver archiveRootObject:people toFile:fileName];
+    ② 解档对象
+        NSString *fileName = @"文件路径";
+        People *people = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        
+4.注意
+    如果需要归档的类是某一自定义类的子类的时候，就需要在归档和解档之前，先实现
+父类的归档和解档方法。即 [super encodeWithCoder:aCoder] 和 [super initWithCoder:aDecoder] 方法;
