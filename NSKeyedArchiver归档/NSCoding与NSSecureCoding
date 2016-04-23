@@ -14,4 +14,9 @@
 无疑会导致用户的App崩溃掉或者数据丢失。
 
 3.NSSecureCoding
-    ios6中，苹果引入了一个新的协议，给予NSCoding的，叫做NSecureCoding
+    ios6中，苹果引入了一个新的协议，给予NSCoding的，叫做NSecureCoding，
+它和NSCoding一样，除了在解码的时候需要同时执行key和要解码的对象的类，
+如果要求的类和从文件中解码出的对象的类不匹配，NSCoder会抛出异常，告诉
+你数据已经被篡改了。
+
+4.NSSecureCoding的实现
