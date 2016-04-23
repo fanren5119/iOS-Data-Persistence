@@ -1,0 +1,26 @@
+1.简介
+    preference会将所有的数据保存到同一个文件中，即preference目录
+下的一个一次应用包名来命名的plist文件。
+2.使用
+    ① 获得NSUserDefault文件
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    ② 向文件中写入内容
+    [userDefault setObject:@"aaa" forKey:@"name"];
+    [userDefault setInteger:15 forKey:@"age"];
+    ③ 立即同步
+    [userDefault synchronize];
+    ④ 读取文件
+    NSString *name = [userDefault objectForKey:@"name"];
+    NSInteger age = [userDefault integerForKey:@"age"];
+3.preference存储支持的类型：
+    ① NSString/NSMutableString
+    ② NSArray/NSMutableArray
+    ③ NSDictionary/NSMutableDictionary
+    ④ NSData/NSMutableData
+    ⑤ NSDate
+    ⑥ int, float, bool, double, NSNumber等基本数据类型
+3.注意
+    ① 偏好设置是专门用来保存应用程序的配置信息的，一般不要在偏好设置中保存
+其他的数据
+    ② 如果没有调用synchronize方法，系统会根据I/O情况不定时刻地保存到文件
+中，所以如果需要立即写入文件，就必须调用synchronize方法；
