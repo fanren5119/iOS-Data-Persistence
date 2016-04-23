@@ -12,6 +12,13 @@
     ④ 读取文件
     NSString *name = [userDefault objectForKey:@"name"];
     NSInteger age = [userDefault integerForKey:@"age"];
+3.preference存储支持的类型：
+    ① NSString/NSMutableString
+    ② NSArray/NSMutableArray
+    ③ NSDictionary/NSMutableDictionary
+    ④ NSData/NSMutableData
+    ⑤ NSDate
+    ⑥ int, float, bool, double, NSNumber等基本数据类型
 3.注意
     ① 偏好设置是专门用来保存应用程序的配置信息的，一般不要在偏好设置中保存
 其他的数据
